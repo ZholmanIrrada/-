@@ -2,47 +2,59 @@
 <html lang="kk">
 <head>
     <meta charset="UTF-8">
-    <title>Ағылшын және орыс тілін үйренуге арналған деңгей бойынша тапсырмалар</title>
+    <title>Ағылшын және орыс тілін үйрену</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f7f7f7;
-            padding: 20px;
+            margin: 0;
+            padding: 0;
             color: #333;
         }
-        h1, h2, h3 {
+        h1 {
             text-align: center;
             color: #cb9cb6;
+            margin-top: 20px;
         }
-        .task, .menu {
-            background-color: #fff;
-            border: 4px solid #cb9cb6;
+        .menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             padding: 20px;
-            margin-bottom: 10px;
-            border-radius: 8px;
+        }
+        .main-image {
+            display: block;
+            margin: 0 auto 20px auto;
+            width: 300px;
+            border-radius: 15px;
         }
         button {
-            padding: 20px;
+            padding: 20px 40px;
+            font-size: 20px;
             background-color: #cb9cb6;
             color: #fff;
             border: none;
-            border-radius: 4px;
-            margin: 5px;
+            border-radius: 8px;
+            margin: 10px;
             cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
         }
         button:hover {
             background-color: #b57aa3;
+            transform: scale(1.05);
         }
         #scoreDisplay {
-            font-size: 22px;
-            margin-top: 30px;
+            font-size: 20px;
             text-align: center;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Ағылшын және орыс тілін үйренуге арналған деңгей бойынша берілген тапсырмалар</h1>
+    <h1>Ағылшын және орыс тілін үйрену</h1>
     <div id="mainMenu" class="menu">
+        <img src="https://cdn.pixabay.com/photo/2017/01/31/13/14/book-2025134_1280.png" alt="Үйрену суреті" class="main-image">
         <button onclick="showLanguage('english')">Ағылшын тілі</button>
         <button onclick="showLanguage('russian')">Орыс тілі</button>
     </div>
@@ -151,7 +163,7 @@
                 const div = document.createElement("div");
                 div.classList.add("task");
                 const q = document.createElement("h3");
-                q.textContent = `${index + 1}. ${task.question}`;
+                q.textContent = ${index + 1}. ${task.question};
                 div.appendChild(q);
                 const shuffledOptions = shuffleArray([...task.options]);
                 shuffledOptions.forEach(option => {
@@ -187,7 +199,7 @@
             const finishBtn = document.createElement("button");
             finishBtn.textContent = "Тексеру";
             finishBtn.onclick = () => {
-                document.getElementById("scoreDisplay").textContent = `Сіздің нәтижеңіз: ${score} / ${currentTasks.length}`;
+                document.getElementById("scoreDisplay").textContent = Сіздің нәтижеңіз: ${score} / ${currentTasks.length};
             };
             const resetBtn = document.createElement("button");
             resetBtn.textContent = "Қайта тапсыру";
