@@ -67,9 +67,9 @@
             english: {
                 A1: [
                     { question: "Сөз: алма", options: ["apple", "book", "dog", "house"], correct: "apple" },
-                    { question: "Сөз: кітап", options: ["book", "pen", "table", "chair"], correct: "book" },
-                    { question: "Сөз: ит", options: ["dog", "cat", "car", "pen"], correct: "dog" },
-                    { question: "Сөз: үй", options: ["house", "table", "car", "chair"], correct: "house" },
+                    { question: "Сөз: кітап", options: ["table", "pen", "book", "chair"], correct: "book" },
+                    { question: "Сөз: ит", options: ["cat", "dog", "car", "pen"], correct: "dog" },
+                    { question: "Сөз: үй", options: ["car", "table", "house", "chair"], correct: "house" },
                     { question: "Сөз: орындық", options: ["chair", "table", "pen", "book"], correct: "chair" },
                     { question: "Сөз: көлік", options: ["car", "pen", "book", "dog"], correct: "car" },
                     { question: "Сөз: сәлем", options: ["hello", "hi", "goodbye", "bye"], correct: "hello" },
@@ -120,6 +120,14 @@
 
         let score = 0, currentTasks = [];
 
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
         function showLanguage(language) {
             document.getElementById('mainMenu').style.display = 'none';
             document.getElementById(language + 'Menu').style.display = 'block';
@@ -137,7 +145,7 @@
 
         function showLevel(language, level) {
             score = 0;
-            currentTasks = tasks[language][level];
+            currentTasks = shuffleArray([...tasks[language][level]]); // сұрақтарды араластыру
             document.getElementById('taskContainer').innerHTML = '';
             currentTasks.forEach((task, index) => {
                 const div = document.createElement("div");
@@ -145,7 +153,8 @@
                 const q = document.createElement("h3");
                 q.textContent = `${index + 1}. ${task.question}`;
                 div.appendChild(q);
-                task.options.forEach(option => {
+                const shuffledOptions = shuffleArray([...task.options]); // жауаптарды араластыру
+                shuffledOptions.forEach(option => {
                     const btn = document.createElement("button");
                     btn.textContent = option;
                     btn.onclick = () => {
